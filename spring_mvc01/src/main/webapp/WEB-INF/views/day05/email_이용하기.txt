@@ -1,0 +1,39 @@
+google을 이용한 메일 보내기
+
+	1. google에서 계정관리 - 보안 - Google에 로그인하는 방법 - 2단계 인증 - 설정하기
+	2. 검색창 앱 비밀번호 - 설정하기 (앱 이름 입력하면 비밀번호 자동 생성)
+   	   * 비밀번호는 생성 시 1번밖에 안 보여주기 때문에 따로 복사해서 저장을 해놔야 된다.
+
+	   앱 이름 : ict_mail_test
+	   앱 비밀번호 : axig llpi acto pobh
+
+	3. pom.xml 라이브러리 3개 추가
+	   - javax.mail
+	   - Spring-context-support
+	   - Javax.mail-api
+
+	4. mail-context.xml 생성
+	   /WEB-INF/spring/mail-context.xml
+	   
+	   <!-- 이메일 관련 -->
+	   <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	        <property name="host" value="smtp.gmail.com"/>
+	        <property name="port" value="587"/>
+	        <property name="defaultEncoding" value="utf-8"/>
+	        <property name="username" value="구글아이디"/>
+	        <property name="password" value="앱비밀번호"/>        
+	        <property name="javaMailProperties" >
+	             <props>
+		             <prop key="mail.transport.protocol">smtp</prop>
+		             <prop key="mail.smtp.auth">true</prop>
+		             <prop key="mail.smtp.starttls.enable">true</prop>
+		             <prop key="mail.debug">true</prop>
+		             <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+		             <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+	            </props>
+	        </property>        
+	    </bean>
+
+	5. web.xml에 mail-context.xml 추가
+	
+
