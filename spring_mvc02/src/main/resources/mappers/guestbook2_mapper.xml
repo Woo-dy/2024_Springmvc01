@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="guestbook2">
+	<select id="list" resultType="gb2vo">
+		select * from guestbook2 order by gb_idx 
+	</select>	
+	
+	<select id="detail" parameterType="String" resultType="gb2vo">
+		select * from guestbook2 where gb_idx = #{gb_idx}
+	</select>
+	
+	<insert id="insert" parameterType="gb2vo">
+		insert into guestbook2(gb_name, gb_subject, gb_content, gb_email, gb_f_name, gb_pw, gb_regdate)
+		values(#{gb_name}, #{gb_subject}, #{gb_content}, #{gb_email}, #{gb_f_name}, #{gb_pw}, NOW())
+	</insert>
+</mapper>
+
+
+
+
+
+
